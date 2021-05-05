@@ -1,8 +1,26 @@
-// Header.js
+import  { BrowserRouter,Route, Redirect,useHistory } from 'react-router-dom';
 import React, {Component} from 'react';
 
 export default class Header extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      navigate_login_page:false
+    }
+  }
+  logout = (e) => {
+    localStorage.clear();
+    console.log('logging out')
+    this.setState({navigate_login_page:true});
+     
+  }
     render(){
+      if(this.state.navigate_login_page) {
+        return  <Route render={(props) => { 
+          return <Redirect to={{ pathname:"/", state: {from: this.props.location} }}/>
+        }}/>
+      }
         return (
             <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     {/* Left navbar links */}
@@ -133,7 +151,7 @@ export default class Header extends Component {
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+        <a class="nav-link" data-widget="control-sidebar" onClick={e=>this.logout(e)} data-slide="true" href="#" role="button">
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>

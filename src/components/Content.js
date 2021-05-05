@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
-
+import {Link} from 'react-router-dom';
 export default class Content extends Component {
+
     render(){
         return (
             <div className="content-wrapper p-2">
-                  <p>Welcome to this beautiful admin panel.</p>
-    <div className="row">
+                  <p>Welcome User</p>
+          <div className="row">
           <div className="col-lg-3 col-6">
             <div className="small-box bg-info">
               <div className="inner">
                 <h3>0</h3>
-
                 <p>Kyc Verifications</p>
               </div>
               <div className="icon">
               <i className="ion ion-id-card-outline"></i>
               </div>
-              <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+              <Link to="/kyc-form" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
             </div>
           </div>
            

@@ -1,6 +1,7 @@
 // SideBar.js
 
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 const logoimage = {
     "opacity":0.8
@@ -24,7 +25,7 @@ export default class SideBar extends Component {
                   <img src="dist/img/avatar5.png" className="img-circle elevation-2" alt="User Image"/>
                 </div>
                 <div className="info">
-                  <a href="#" className="d-block">Demo user</a>
+                  <a  className="d-block">Demo user</a>
                 </div>
               </div>
         
@@ -39,11 +40,51 @@ export default class SideBar extends Component {
                   
 
                   <li className="nav-item">
-                    <a href="#" className="nav-link">
-                      <i className="nav-icon far fa-circle text-warning"></i>
-                      <p>Warning</p>
+                    <a  className="nav-link">
+                      <i className="nav-icon fas fa-home"></i>
+                      <Link to="/dashboard">
+                        <p>Dashboard</p>
+                      </Link>
+                      
                     </a>
                   </li>
+                  <li className="nav-item">
+                    <a  className="nav-link">
+                      <i className="nav-icon fas fa-question-circle"></i>
+                      <Link to="/kyc-form">
+                        <p>Kyc Verification</p>
+                      </Link>
+                      
+                    </a>
+                  </li>
+
+                  <li className="nav-item">
+                    <a  className="nav-link">
+                      <i className="nav-icon fas fa-university"></i>
+                      <Link to="/bank-setup">
+                        <p>Bank Details</p>
+                      </Link>
+                    </a>
+                  </li>
+
+                  <li className="nav-item">
+                    <a  className="nav-link">
+                      <i className="nav-icon fas fa-key"></i>
+                      <Link to="/change-password">
+                        <p>Change Password</p>
+                      </Link>
+                    </a>
+                  </li>
+
+                  <li className="nav-item">
+                    <a  className="nav-link">
+                      <i className="nav-icon fas fa-chart-area"></i>
+                      <Link to="/mutual-fund-plans">
+                        <p>Mutual Fund Plans</p>
+                      </Link>
+                    </a>
+                  </li>
+
                 </ul>
               </nav>
               {/* /.sidebar-menu */}

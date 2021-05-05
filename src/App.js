@@ -1,46 +1,56 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
-import SideBar from './components/SideBar';
+import { BrowserRouter as Router,Route,Switch,Redirect } from "react-router-dom";
+
+
 import Login from './components/Login';
-import Content from './components/Content';
+import Dashboard from './components/Dashboard';
+import ProtectedRoute from './Routes/ProtectedRoutes';
+import KycForm from './components/KycForm';
+import BankSetup from './components/BankSetup';
+import ChangePassword from './components/ChangePassword';
+import MutualFundDashboard from './components/MutualFundDashboard';
+
+
+const authToken = localStorage.getItem('access_token');
 
 class App extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      isLoggedIn:true
+    }
+  }
+
+  componentDidMount() {
+   
+    if(authToken) {
+      console.log('authenticated')
+      this.setState({isLoggedIn:true})
+    } else {
+        console.log('not authenticated')
+      this.setState({isLoggedIn:false})
+    }
+  }
   
-  compose() {
-    var authToken = localStorage.getItem('authToken');
-    if(accessToken.length==0) {
-      return (
-        this.renderLoginPage()
-      );
-    } 
-      return (
-        this.renderDashboard()
-      );
+
+  render() {
+    
+    return (
+      <Router>
+          <Route path="/" exact component={Login}/>
+          <ProtectedRoute path="/dashboard" component={Dashboard} authState = {this.state.isLoggedIn}/>
+          <ProtectedRoute path="/kyc-form" component={KycForm} authState = {this.state.isLoggedIn}/>
+          <ProtectedRoute path="/bank-setup" component={BankSetup} authState = {this.state.isLoggedIn}/>
+          <ProtectedRoute path="/change-password" component={ChangePassword} authState = {this.state.isLoggedIn}/>
+          <ProtectedRoute path="/mutual-fund-plans" component={MutualFundDashboard} authState = {this.state.isLoggedIn}/>
+
+      </Router>
+    )
+   
     
   }
 
-
-  renderLoginPage() {
-    return (
-      <div className="hold-transition login-page">
-        <Login/>
-      </div>
-    )
-  }
-  renderDashboard() {
-    return ( <div>
-      <Header />
-      <SideBar />
-      <Content />
-    </div>);
-  }
-
-  render() {
-    return (
-     this.compose()
-    );
-  }
 }
 
 export default App;
