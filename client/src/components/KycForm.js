@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import Header from './Header';
 import SideBar from './SideBar';
-import {Redirect,withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Uploader from '../services/uploader.service';
 import KycDocuments from '../services/documents.service';
 import { toast } from 'react-toastify';
 toast.configure();
 const BASEURL = 'http://localhost:8080/';
-const DOCDIR = 'uploads/';
 const user_id = localStorage.getItem('user_id');
 
 class KycForm extends Component {
@@ -65,7 +64,7 @@ class KycForm extends Component {
         console.log(user_id)
         KycDocuments.getAadhaar(data).then(res => {
 
-            if(res.data != undefined) {
+            if(res.data !== undefined) {
                 this.setState({
                     user_document_info:res.data
                 })
@@ -101,7 +100,7 @@ class KycForm extends Component {
                       </div>
                       <div className="col-lg-4 mt-2 mr-1 shadow-sm bg-white p-2 text-bold">
                           <span>Document Type: {this.state.user_document_info.data.document_name}</span>
-                          <span className="p-2"><a href={ BASEURL+this.state.user_document_info.data.document_url} className="badge badge-secondary" target="_blank"><i className='fas fa-download'></i> Download</a></span>
+                          <span className="p-2"><a href={ BASEURL+this.state.user_document_info.data.document_url} className="badge badge-secondary" target="_blank" rel="noreferrer"><i className='fas fa-download'></i> Download</a></span>
                       </div>
                       <div className="col-lg-4 mt-2 mr-1 shadow-sm bg-white p-2 text-bold">
                           <span>Document Status: {(this.state.user_document_info.data.is_verified) ? <span className='badge badge-success p-1'>Verified</span> : <span className='badge badge-danger p-1'>Not Verified</span>  }</span>
