@@ -5,8 +5,6 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
 
-const loginstate = localStorage.getItem('access_token')
-
 
 export default class Login extends Component {
 
@@ -52,13 +50,14 @@ export default class Login extends Component {
                 submitted: true
             });
           
-            console.log(response.data);
+
             let accessToken = response.data.accessToken;
             let user_id = response.data.id;
             localStorage.setItem('access_token',accessToken);
             localStorage.setItem('userinfo',JSON.stringify(response.data));
             localStorage.setItem('user_id',response.data.id);
             this.props.history.push('/dashboard')
+            //window.location.href = '/dashboard';
           })
           .catch(e => {
              toast.error('Invalid username or password, try again',{autoClose:5000});

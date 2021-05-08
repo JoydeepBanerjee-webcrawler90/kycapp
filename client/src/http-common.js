@@ -1,10 +1,12 @@
 import axios from "axios";
-const token = localStorage.getItem('access_token');
+import Config from "./config";
 
+const URL = Config().API_BASEURL;
+const TOKEN = Config().TOKEN;
 export default axios.create({
-  baseURL: "https://shyamkycdemo.herokuapp.com/api",
+  baseURL: URL,
   headers: {
     "Content-type": "application/json",
-    "x-access-token":token
+    "x-access-token": TOKEN
   }
 });

@@ -5,9 +5,11 @@ import {withRouter} from 'react-router-dom';
 import Uploader from '../services/uploader.service';
 import KycDocuments from '../services/documents.service';
 import { toast } from 'react-toastify';
+import Config from '../config';
 toast.configure();
-const BASEURL = 'http://localhost:8080/';
-const user_id = localStorage.getItem('user_id');
+
+const user_id = Config().USER_ID;
+const BASEURL = Config().BASEURL;
 
 class KycForm extends Component {
 

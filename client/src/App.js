@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router,Route } from "react-router-dom";
+import Config from "./config";
 
 
 import Login from './components/Login';
@@ -11,7 +12,7 @@ import ChangePassword from './components/ChangePassword';
 import MutualFundDashboard from './components/MutualFundDashboard';
 
 
-const authToken = localStorage.getItem('access_token');
+const authToken = Config()
 
 class App extends Component {
 
@@ -23,7 +24,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-   
+    console.log(Config());
     if(authToken) {
       console.log('authenticated')
       this.setState({isLoggedIn:true})
@@ -31,6 +32,7 @@ class App extends Component {
         console.log('not authenticated')
       this.setState({isLoggedIn:false})
     }
+    console.log(Config());
   }
   
 
