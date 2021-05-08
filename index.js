@@ -37,9 +37,9 @@ db.mongoose
   });
   
 // main route
-// app.get("/", (req, res) => {
-//   res.json({ message: "Welcome to mutual fund backend application." });
-// });
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to mutual fund backend application." });
+});
 
 // routes
 require('./routes/auth.routes')(app);
