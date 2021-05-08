@@ -36,15 +36,7 @@ db.mongoose
     process.exit();
   });
   
-// main route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to mutual fund backend application." });
-});
 
-// routes
-require('./routes/auth.routes')(app);
-require('./routes/user.routes')(app); 
-require('./routes/upload.routes')(app);
 
 // if(process.env.NODE_ENV === 'production') {
 //     // set static folder
@@ -55,13 +47,22 @@ require('./routes/upload.routes')(app);
 // }
 
 app.use(express.static('client/build'));
-    app.get('*', (req,res) => {
+    app.get('/', (req,res) => {
+      console.log('intoit');
       res.sendFile(path.resolve(__dirname,'client','build','index.html'));
     })
 // app.use(express.static(path.join(__dirname, "client/build")));
 // app.get("/*", (req, res) => res.sendFile(path.join(__dirname, "/index.html")));
 
+// main route
+// app.get("/", (req, res) => {
+//   res.json({ message: "Welcome to mutual fund backend application." });
+// });
 
+// routes
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app); 
+require('./routes/upload.routes')(app);
 // set port, listen for requests
 
 const PORT = process.env.PORT || 8080;
