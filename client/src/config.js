@@ -10,7 +10,7 @@ function Config() {
 
     } else {
 
-        BASEURL="https://shyamkycdemo.herokuapp.com";
+        BASEURL="https://shyamkycdemo.herokuapp.com/";
         API_BASEURL=BASEURL+"api";
         
     }
