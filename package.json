@@ -18,10 +18,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "server/index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server/index.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
   },
   "engines": {
     "node": "14.15.0"
