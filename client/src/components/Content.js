@@ -11,7 +11,7 @@ export default class Content extends Component {
             <div className="small-box bg-info">
               <div className="inner">
                 <h3>0</h3>
-                <p>Kyc Verifications</p>
+                <p>Kyc Verification</p>
               </div>
               <div className="icon">
               <i className="ion ion-id-card-outline"></i>
