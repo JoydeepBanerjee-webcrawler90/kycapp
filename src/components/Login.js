@@ -1,9 +1,7 @@
 // Header.js
 import React, {Component} from 'react';
 import Auth from '../services/auth.service';
-import {Redirect} from 'react-router-dom';
 import { Route,withRouter } from "react-router-dom";
-import Dashboard from './Dashboard';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()

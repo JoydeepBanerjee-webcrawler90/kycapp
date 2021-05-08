@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Header from './Header';
 import SideBar from './SideBar';
-import Content from './Content';
 import {Redirect,withRouter} from 'react-router-dom';
 import Uploader from '../services/uploader.service';
 import KycDocuments from '../services/documents.service';
