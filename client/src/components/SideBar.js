@@ -6,25 +6,39 @@ const logoimage = {
     "opacity":0.8
 }
 export default class SideBar extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInfo: {}
+    }
+    
+  }
+
+  componentDidMount() {
+    this.setState({
+      userInfo:JSON.parse(localStorage.getItem('userinfo'))
+    })
+  }
     
     render(){
         return (
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
             {/* Brand Logo */}
-            <a href="index3.html" className="brand-link">
+            <Link href="/dashboard" className="brand-link">
               <img src="dist/img/favicon.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={logoimage}/>
               <span className="brand-text font-weight-light">Mutual Fund App</span>
-            </a>
+            </Link>
         
             {/* Sidebar */}
             <div className="sidebar">
               {/* Sidebar user panel (optional) */}
               <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div className="image">
-                  <img src="dist/img/avatar5.png" className="img-circle elevation-2" alt="User Image"/>
+                  <img src="dist/img/default-150x150.png" className="img-circle elevation-2" alt="User"/>
                 </div>
                 <div className="info">
-                  <a  className="d-block">Demo user</a>
+                  <Link to="/dashboard" className="d-block">{(this.state.userInfo.username!==undefined) ? this.state.userInfo.username : 'Demo User'}</Link>
                 </div>
               </div>
         
@@ -39,49 +53,48 @@ export default class SideBar extends Component {
                   
 
                   <li className="nav-item">
-                    <a  className="nav-link">
+                    <Link to="/dashboard" className="nav-link">
                       <i className="nav-icon fas fa-home"></i>
                       <Link to="/dashboard">
                         <p>Dashboard</p>
                       </Link>
                       
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a  className="nav-link">
+                    <Link to="kyc-form" className="nav-link">
                       <i className="nav-icon fas fa-question-circle"></i>
                       <Link to="/kyc-form">
                         <p>Kyc Verification</p>
                       </Link>
-                      
-                    </a>
+                    </Link>
                   </li>
 
                   <li className="nav-item">
-                    <a  className="nav-link">
+                    <Link to="bank-setup" className="nav-link">
                       <i className="nav-icon fas fa-university"></i>
                       <Link to="/bank-setup">
                         <p>Bank Details</p>
                       </Link>
-                    </a>
+                    </Link>
                   </li>
 
                   <li className="nav-item">
-                    <a  className="nav-link">
+                    <Link to="/change-password" className="nav-link">
                       <i className="nav-icon fas fa-key"></i>
                       <Link to="/change-password">
                         <p>Change Password</p>
                       </Link>
-                    </a>
+                    </Link>
                   </li>
 
                   <li className="nav-item">
-                    <a  className="nav-link">
+                    <Link to="/mutual-fund-plans" className="nav-link">
                       <i className="nav-icon fas fa-chart-area"></i>
                       <Link to="/mutual-fund-plans">
                         <p>Mutual Fund Plans</p>
                       </Link>
-                    </a>
+                    </Link>
                   </li>
 
                 </ul>

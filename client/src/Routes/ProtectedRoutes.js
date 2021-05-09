@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route,Redirect } from "react-router-dom";
 
-function ProtectedRoute({authState:authState, component:Component, ...rest}) {
+function ProtectedRoute({authState, component:Component, ...rest}) {
     return  <Route {...rest} render={(props) => {
             
             if(authState) {

@@ -32,7 +32,7 @@ export default class Content extends Component {
               <div className="icon">
                 <i className="ion ion-storefront-outline"></i>
               </div>
-              <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+              <Link to="/bank" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
             </div>
           </div>
           
@@ -47,7 +47,7 @@ export default class Content extends Component {
               <div className="icon">
               <i className="ion ion-id-card-outline"></i>
               </div>
-              <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+              <Link to="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
             </div>
           </div>
           
@@ -62,7 +62,7 @@ export default class Content extends Component {
               <div className="icon">
                 <i className="ion ion-id-card-outline"></i>
               </div>
-              <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+              <Link to="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
             </div>
           </div>
           

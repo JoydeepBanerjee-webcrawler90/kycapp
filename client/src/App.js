@@ -10,6 +10,7 @@ import KycForm from './components/KycForm';
 import BankSetup from './components/BankSetup';
 import ChangePassword from './components/ChangePassword';
 import MutualFundDashboard from './components/MutualFundDashboard';
+import SignUp from './components/SignUp';
 
 
 const authToken = Config()
@@ -24,7 +25,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(Config());
+    // console.log(Config());
     if(authToken) {
       console.log('authenticated')
       this.setState({isLoggedIn:true})
@@ -32,7 +33,7 @@ class App extends Component {
         console.log('not authenticated')
       this.setState({isLoggedIn:false})
     }
-    console.log(Config());
+    // console.log(Config());
   }
   
 
@@ -41,6 +42,7 @@ class App extends Component {
     return (
       <Router>
           <Route path="/" exact component={Login}/>
+          <Route path="/create-account" exact component={SignUp}/>
           <ProtectedRoute path="/dashboard" component={Dashboard} authState = {this.state.isLoggedIn}/>
           <ProtectedRoute path="/kyc-form" component={KycForm} authState = {this.state.isLoggedIn}/>
           <ProtectedRoute path="/bank-setup" component={BankSetup} authState = {this.state.isLoggedIn}/>

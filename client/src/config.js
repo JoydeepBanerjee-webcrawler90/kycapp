@@ -1,18 +1,25 @@
 function Config() {
 
-    const mode = "PROD";
+    const mode = "DEV";
     var API_BASEURL = "";
     var BASEURL = "";
-    if(mode==="DEV") {
 
-        BASEURL="http://localhost:8080/";
-        API_BASEURL=BASEURL+"api";
+    switch(mode) {
 
-    } else {
+        case "DEV":
+            BASEURL="http://localhost:8080/";
+            API_BASEURL=BASEURL+"api";
+            break;
 
-        BASEURL="https://shyamkycdemo.herokuapp.com/";
-        API_BASEURL=BASEURL+"api";
-        
+        case "PROD":
+            BASEURL="https://shyamkycdemo.herokuapp.com/";
+            API_BASEURL=BASEURL+"api";
+            break;
+
+        default:
+            BASEURL="https://shyamkycdemo.herokuapp.com/";
+            API_BASEURL=BASEURL+"api";
+
     }
 
     const TOKEN = localStorage.getItem('access_token');

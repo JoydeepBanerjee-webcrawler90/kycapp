@@ -7,17 +7,19 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
 
 
-export default class Login extends Component {
+export default class SignUp extends Component {
 
     constructor(props) {
         
         super(props);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
 
-        this.Login = this.Login.bind(this);
+        this.SignUp = this.SignUp.bind(this);
         this.state = {
             username:'',
+            emaail:'',
             password:'',
             submitted: false,
             loggedIn:false
@@ -26,7 +28,7 @@ export default class Login extends Component {
     }
 
   
-    onChangeEmail(e) {
+    onChangeName(e) {
       this.setState({
         username: e.target.value
       });
@@ -38,13 +40,21 @@ export default class Login extends Component {
       });
     }
 
-    Login() {
+    onChangeEmail(e) {
+        this.setState({
+          email: e.target.value
+        });
+      }
+
+    SignUp() {
         var data = {
           username: this.state.username,
-          password: this.state.password
+          password: this.state.password,
+          email: this.state.email,
+          roles:["customer"]
         };
     
-        Auth.authenticate(data)
+        Auth.signUp(data)
           .then(response => {
             console.log(response.data);
             this.setState({
@@ -53,15 +63,12 @@ export default class Login extends Component {
           
             if(response.status===200) {
             
-              let accessToken = response.data.accessToken;
-              localStorage.setItem('access_token',accessToken);
-              localStorage.setItem('userinfo',JSON.stringify(response.data));
-              localStorage.setItem('user_id',response.data.id);
-              toast.info('Please wait...',{
+
+              toast.info(response.data.message+', redirecting to login page now',{
                 autoClose:3000
               })
               setTimeout(()=> {
-                this.props.history.push('/dashboard')
+                this.props.history.push('/')
               },3000);
 
             } else {
@@ -91,21 +98,36 @@ export default class Login extends Component {
             {/* /.login-logo */}
             <div className="card">
               <div className="card-body login-card-body">
-                <p className="login-box-msg">Sign in to start your session</p>
+                <p className="login-box-msg">Create your account</p>
                   <div className="input-group mb-3">
                     <input type="text" className="form-control" placeholder="Username"
-                          
+                         
                           id="username"
+                          required
+                          value={this.state.username}
+                          onChange={this.onChangeName}
+                          name="username"/>
+                    <div className="input-group-append">
+                      <div className="input-group-text">
+                        <span className="fas fa-user"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="input-group mb-3">
+                    <input type="email" placeholder="Email"
+                          className="form-control"
+                          id="email"
                           required
                           value={this.state.email}
                           onChange={this.onChangeEmail}
-                          name="username"/>
+                          name="email"/>
                     <div className="input-group-append">
                       <div className="input-group-text">
                         <span className="fas fa-envelope"></span>
                       </div>
                     </div>
                   </div>
+                  
                   <div className="input-group mb-3">
                     <input type="password" className="form-control" placeholder="Password" id="password"
                           required
@@ -120,7 +142,7 @@ export default class Login extends Component {
                   </div>
                   <div className="row">
                     <div className="col-8">
-                      <div className="icheck-primary">
+                      <div className="icheck-primary d-none">
                         <input type="checkbox" id="remember"/>
                         <label>
                           Remember Me
@@ -129,27 +151,17 @@ export default class Login extends Component {
                     </div>
                     {/* /.col */}
                     <div className="col-4">
-                      <button type="button" onClick={this.Login} className="btn btn-primary btn-block">Sign In</button>
+                      <button type="button" onClick={this.SignUp} className="btn btn-primary btn-block">Sign Up</button>
                     </div>
                     {/* /.col */}
                   </div>
-          
-                {/* <div className="social-auth-links text-center mb-3">
-                  <p>- OR -</p>
-                  <a href="#" className="btn btn-block btn-primary">
-                    <i className="fab fa-facebook mr-2"></i> Sign in using Facebook
-                  </a>
-                  <a href="#" className="btn btn-block btn-danger">
-                    <i className="fab fa-google-plus mr-2"></i> Sign in using Google+
-                  </a>
-                </div> */}
-                {/* /.social-auth-links */}
+        
           
                 <p className="mb-1 d-none">
-                  <Link to="/forgot-password">I forgot my password</Link>
+                <Link to="/">I forgot my password</Link>
                 </p>
-                <p className="mb-0">
-                  <Link to="/create-account" className="text-center">Register a new membership</Link>
+                <p className="mt-2">
+                  <Link to="/" className="text-center ">Have a account? Click here to login</Link>
                 </p>
               </div>
               {/* /.login-card-body */}
@@ -159,4 +171,3 @@ export default class Login extends Component {
         );
     }
 }
-

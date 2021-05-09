@@ -4,7 +4,7 @@ class Uploader {
 
     aadhaar_upload(data) {
 
-        var local = localStorage.setItem('aadhaar_upload','true');
+        localStorage.setItem('aadhaar_upload','true');
         return http.post('/aadhaar/upload',data,{});
         
     }
