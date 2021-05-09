@@ -1,6 +1,6 @@
 function Config() {
 
-    const mode = "DEV";
+    const mode = "PROD";
     var API_BASEURL = "";
     var BASEURL = "";
 
