@@ -132,7 +132,7 @@ class BankSetup extends Component {
           .then((willDelete) => {
             if (willDelete) {
              
-              Bank.removeBankDetail({id:__id})
+              Bank.removeBankDetail({id:__id},Config().TOKEN)
               .then(res => {
                   swal("Success, bank detail was removed successfully", {
                     icon: "success",

@@ -27,11 +27,13 @@ class Bank {
         });
     }
 
-    removeBankDetail(__id) {
+    removeBankDetail(__id,token) {
 
         console.log(__id)
 
-        return http.post('/bank/remove',__id);
+        return http.post('/bank/remove',__id,{ headers: {
+            'x-access-token' : token
+        }});
     }
 
 }
