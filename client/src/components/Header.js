@@ -71,7 +71,7 @@ export default class Header extends Component {
         {/* <a className="nav-link" data-widget="navbar-search" href="#" role="button">
           <i className="fas fa-search"></i>
         </a> */}
-        <div class="form-group">
+        <div class="form-group d-none">
           <label class="switch-primary">
             <input type="checkbox" class="switch switch-bootstrap status" name="status" onChange={(e) => this.changeMode(e)} value="0"/>
             <span class="switch-body"></span>

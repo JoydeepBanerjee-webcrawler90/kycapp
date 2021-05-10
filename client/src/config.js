@@ -1,6 +1,6 @@
 function Config() {
 
-    const mode = localStorage.getItem('mode');
+    const mode = (localStorage.getItem('mode')) ? localStorage.getItem('mode') : 'DEV';
     var API_BASEURL = "";
     var BASEURL = "";
 

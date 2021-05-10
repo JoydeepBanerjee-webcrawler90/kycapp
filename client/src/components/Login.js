@@ -23,11 +23,22 @@ export default class Login extends Component {
             loggedIn:false
            };
 
-           localStorage.setItem('mode','PROD');
+          //  if(!localStorage.getItem('mode')) {
+          //   localStorage.setItem('mode','PROD');
+          //   console.log(localStorage.getItem('mode'))
       
+          //  }
+         
     }
 
-  
+    componentDidMount() {
+      console.log(window.location.href);
+      localStorage.setItem('mode','DEV')
+      if(window.location.href === "http://localhost:3000/") {
+        localStorage.setItem('mode','DEV')
+      } 
+    }
+
     onChangeEmail(e) {
       this.setState({
         username: e.target.value
@@ -79,7 +90,7 @@ export default class Login extends Component {
               },3000);
 
             } else {
-              btn.disable = false;
+              btn.disabled = false;
               btn.innerHTML = `Login`;
               toast.error(response.data.message,{
                 autoClose:3000
