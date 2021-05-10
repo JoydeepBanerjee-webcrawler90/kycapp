@@ -23,9 +23,9 @@ class BankSetup extends Component {
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         
-        await this.getBankData()
+        this.getBankData()
     }
 
     onSubmitVerifyBank(e) {

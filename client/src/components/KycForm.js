@@ -52,16 +52,16 @@ class KycForm extends Component {
 
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         
  
-        await this.getAadhaarData();
+        this.getAadhaarData();
        
         
     }
 
     getAadhaarData() {
-        
+        console.log(Config())
         let data = {user_id:Config().USER_ID};
         
         KycDocuments.getAadhaar(data).then(res => {
