@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 const db = {};
 
 db.mongoose = mongoose;
-
+mongoose.set('useFindAndModify', false);
 
 db.user = require("./users.model");
 db.role = require("./roles.model");

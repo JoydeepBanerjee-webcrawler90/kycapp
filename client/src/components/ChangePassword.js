@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 import Header from './Header';
 import SideBar from './SideBar';
 import {withRouter} from 'react-router-dom';
+import UnderConstruction from './UnderConstruction';
 
 class ChangePassword extends Component {
 
+    
     
     render(){
         return (
             <div>
             <Header/>
             <SideBar/>
-            <div className="content-wrapper p-2">
-                  <p>Change Password Form</p>
-            </div>
+            <UnderConstruction/>
             </div>
        )
     }

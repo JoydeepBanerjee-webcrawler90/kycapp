@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Header from './Header';
 import SideBar from './SideBar';
 import {withRouter} from 'react-router-dom';
+import UnderConstruction from './UnderConstruction';
 
 class MutualFundDashboard extends Component {
 
@@ -11,9 +12,8 @@ class MutualFundDashboard extends Component {
             <div>
             <Header/>
             <SideBar/>
-            <div className="content-wrapper p-2">
-                  <p>Mutual Fund Dashboard</p>
-            </div>
+            <UnderConstruction/>
+
             </div>
        )
     }

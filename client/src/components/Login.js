@@ -14,7 +14,7 @@ export default class Login extends Component {
         super(props);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-
+        this.rememberMe = this.rememberMe.bind(this);
         this.Login = this.Login.bind(this);
         this.state = {
             username:'',
@@ -38,12 +38,20 @@ export default class Login extends Component {
       });
     }
 
-    Login() {
+    Login(e) {
         var data = {
           username: this.state.username,
           password: this.state.password
         };
-    
+
+        if(this.state.username.length===0 || this.state.password.length===0) {
+          toast('All fields are mandatory');
+          return
+        }
+
+        var btn = e.target
+        btn.disable = true
+        btn.innerHTML = "<i class='fas fa-spinner fa-spin'></i> Please wait";
         Auth.authenticate(data)
           .then(response => {
             console.log(response.data);
@@ -51,31 +59,42 @@ export default class Login extends Component {
                 submitted: true
             });
           
-            if(response.status===200) {
+            if(response.data.status===200) {
             
               let accessToken = response.data.accessToken;
               localStorage.setItem('access_token',accessToken);
               localStorage.setItem('userinfo',JSON.stringify(response.data));
               localStorage.setItem('user_id',response.data.id);
-              toast.info('Please wait...',{
-                autoClose:3000
-              })
+              // toast.info('Please wait...',{
+              //   autoClose:3000
+              // })
+             
               setTimeout(()=> {
+                btn.disable = false
+                btn.innerHTML = `Login`
                 this.props.history.push('/dashboard')
               },3000);
 
             } else {
-
-              toast.info(response.message,{
+              btn.disable = false;
+              btn.innerHTML = `Login`;
+              toast.error(response.data.message,{
                 autoClose:3000
               })
             }
 
           }).catch(e => {
+              btn.disable = false
+              btn.innerHTML = `Login`
               toast.error('Something went wrong, please try again later');
               console.log(e);
           })
          
+      }
+
+      rememberMe(e) {
+        var event = e.target
+        console.log(event)
       }
 
 
@@ -119,17 +138,17 @@ export default class Login extends Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-8">
+                    <div className="col-6">
                       <div className="icheck-primary">
-                        <input type="checkbox" id="remember"/>
+                        <input type="checkbox" id="remember" onClick=''/>
                         <label>
                           Remember Me
                         </label>
                       </div>
                     </div>
                     {/* /.col */}
-                    <div className="col-4">
-                      <button type="button" onClick={this.Login} className="btn btn-primary btn-block">Sign In</button>
+                    <div className="col-6">
+                      <button type="button" onClick={(e) => this.Login(e)} className="btn btn-primary btn-block">Sign In</button>
                     </div>
                     {/* /.col */}
                   </div>

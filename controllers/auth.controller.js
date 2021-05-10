@@ -37,7 +37,7 @@ exports.signup = (req, res) => {
               return;
             }
 
-            res.send({ message: "User was registered successfully!" });
+            res.status(200).send({ message: "Registration was successful!", status: 200 });
           });
         }
       );
@@ -55,7 +55,7 @@ exports.signup = (req, res) => {
             return;
           }
 
-          res.send({ message: "User was registered successfully!" });
+          res.send({ message: "Registration was successful!" });
         });
       });
     }
@@ -75,8 +75,10 @@ exports.signin = (req, res) => {
       }
 
       if (!user) {
-        return res.status(404).send({ message: "User Not found."});
+        return res.status(200).send({ message: "User Not found.", status: 204 });
       }
+
+
 
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
@@ -89,6 +91,9 @@ exports.signin = (req, res) => {
           message: "Invalid Password!"
         });
       }
+
+      user.updatedAt = new Date();
+      user.save();
       
       var token = jwt.sign({ id: user.id }, config.SECRET, {
         expiresIn: 86400 // 24 hours
@@ -104,7 +109,9 @@ exports.signin = (req, res) => {
         username: user.username,
         email: user.email,
         roles: authorities,
-        accessToken: token
+        accessToken: token,
+        updatedAt:user.updatedAt,
+        status: 200
       });
     });
 }

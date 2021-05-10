@@ -11,6 +11,15 @@ class KycDocuments {
         });
     }
 
+    getPan(data) {
+        console.log(data)
+        return http.get('/pan/get/',{
+            params:{
+                user_id:data.user_id
+            }
+        });
+    }
+
 
 }
 

@@ -25,7 +25,7 @@ const BankDocuments = mongoose.model(
     bank_ifsc:String,
     bank_vid:String,
     account_no:String,
-    credited_amount:String,
+    credited_amount:Number,
     is_verified:Boolean,
     document_url: String,
     user_id: [

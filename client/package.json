@@ -15,6 +15,7 @@
     "react-toastr": "^3.0.0",
     "reactjs-toastr": "^1.1.0",
     "serve": "^11.3.2",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

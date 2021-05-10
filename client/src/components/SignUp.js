@@ -4,6 +4,7 @@ import Auth from '../services/auth.service';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import Config from '../config';
 toast.configure()
 
 
@@ -15,11 +16,12 @@ export default class SignUp extends Component {
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
-
+        this.onChangeRole = this.onChangeRole.bind(this);
         this.SignUp = this.SignUp.bind(this);
         this.state = {
             username:'',
-            emaail:'',
+            email:'',
+            roles:[],
             password:'',
             submitted: false,
             loggedIn:false
@@ -40,6 +42,13 @@ export default class SignUp extends Component {
       });
     }
 
+    onChangeRole(e) {
+      console.log(e)
+      this.setState({
+        roles: [e.target.value]
+      });
+    }
+
     onChangeEmail(e) {
         this.setState({
           email: e.target.value
@@ -51,7 +60,7 @@ export default class SignUp extends Component {
           username: this.state.username,
           password: this.state.password,
           email: this.state.email,
-          roles:["customer"]
+          roles:this.state.roles
         };
     
         Auth.signUp(data)
@@ -83,6 +92,29 @@ export default class SignUp extends Component {
               console.log(e);
           })
          
+      }
+
+      roles() {
+        const user_role = Config().USERINFO;
+        if(user_role.roles == "ROLE_ADMIN") {
+
+          return (
+            <div className="input-group mb-3">
+                   <select className="form-control" multiple name="roles[]" onChange={this.onChangeRole}>
+                      <option value="">--SELECT ROLE--</option>
+                      <option value="admin">Admin</option>
+                      <option value="customer">Customer</option>
+                      <option value="moderator">Moderator</option>
+                   </select>
+                    <div className="input-group-append">
+                      <div className="input-group-text">
+                        <span className="fas fa-cog"></span>
+                      </div>
+                    </div>
+                  </div>
+          )
+
+        }
       }
 
 
@@ -140,6 +172,7 @@ export default class SignUp extends Component {
                       </div>
                     </div>
                   </div>
+                  {this.roles()}
                   <div className="row">
                     <div className="col-8">
                       <div className="icheck-primary d-none">

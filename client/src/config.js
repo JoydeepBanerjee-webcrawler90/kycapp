@@ -1,6 +1,6 @@
 function Config() {
 
-    const mode = "PROD";
+    const mode = "DEV";
     var API_BASEURL = "";
     var BASEURL = "";
 
@@ -24,12 +24,20 @@ function Config() {
 
     const TOKEN = localStorage.getItem('access_token');
     const USER_ID = localStorage.getItem('user_id');
-    
+    var USERINFO = {
+        username : ''
+    }
+    var UNIFO = {}
+    UNIFO = JSON.parse(localStorage.getItem('userinfo'))
+    if(UNIFO !== null) {
+        USERINFO = UNIFO
+    }
     return {
         'API_BASEURL' : API_BASEURL,
         'BASEURL' : BASEURL,
         'TOKEN' : TOKEN,
-        'USER_ID' : USER_ID
+        'USER_ID' : USER_ID,
+        'USERINFO':USERINFO
     }
 }
 

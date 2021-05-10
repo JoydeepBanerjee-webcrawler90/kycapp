@@ -6,7 +6,7 @@ import Uploader from '../services/uploader.service';
 import KycDocuments from '../services/documents.service';
 import { toast } from 'react-toastify';
 import Config from '../config';
-toast.configure();
+toast.configure({autoClose:2500});
 
 const user_id = Config().USER_ID;
 const BASEURL = Config().BASEURL;
@@ -30,6 +30,7 @@ class KycForm extends Component {
     onSubmitAadhaarForm(e) {
         e.preventDefault();
         let aadhaar_file = e.target.aadhaar_file.files[0];
+        toast.success('Uploading....');
         this.setState({
             aadhaar_file:aadhaar_file
         })
@@ -46,22 +47,21 @@ class KycForm extends Component {
         Uploader.aadhaar_upload(data).then(res => {
 
             toast.success(res.data.message);
+            setTimeout(()=> { this.getAadhaarData(); } , 2500);
         });
 
     }
 
     async componentDidMount() {
         
-        
+ 
         await this.getAadhaarData();
-        // setTimeout(()=> {
-        //     console.log(this.state.user_document_info);
-        // },4000);
+       
         
     }
 
     getAadhaarData() {
-        const user_id = localStorage.getItem('user_id');
+        
         let data = {user_id:user_id};
         console.log(user_id)
         KycDocuments.getAadhaar(data).then(res => {
