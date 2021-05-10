@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import Config from '../config';
 toast.configure({autoClose:2500});
 
-const user_id = Config().USER_ID;
+
 const BASEURL = Config().BASEURL;
 
 class KycForm extends Component {
@@ -42,7 +42,7 @@ class KycForm extends Component {
         data.append('aadhaar_file', aadhaar_file);
         data.append('document_name','Addhaar File');
         data.append('document_type','AdhaarCard');
-        data.append('user_id',user_id);
+        data.append('user_id',Config().USER_ID);
 
         Uploader.aadhaar_upload(data).then(res => {
 
@@ -62,8 +62,8 @@ class KycForm extends Component {
 
     getAadhaarData() {
         
-        let data = {user_id:user_id};
-        console.log(user_id)
+        let data = {user_id:Config().USER_ID};
+        
         KycDocuments.getAadhaar(data).then(res => {
 
             if(res.data !== undefined) {

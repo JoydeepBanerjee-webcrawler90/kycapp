@@ -50,7 +50,7 @@ export default class Login extends Component {
         }
 
         var btn = e.target
-        btn.disable = true
+        btn.disabled = true
         btn.innerHTML = "<i class='fas fa-spinner fa-spin'></i> Please wait";
         Auth.authenticate(data)
           .then(response => {
@@ -70,7 +70,7 @@ export default class Login extends Component {
               // })
              
               setTimeout(()=> {
-                btn.disable = false
+                btn.disabled = false
                 btn.innerHTML = `Login`
                 this.props.history.push('/dashboard')
               },3000);
@@ -112,6 +112,7 @@ export default class Login extends Component {
               <div className="card-body login-card-body">
                 <p className="login-box-msg">Sign in to start your session</p>
                   <div className="input-group mb-3">
+
                     <input type="text" className="form-control" placeholder="Username"
                           
                           id="username"

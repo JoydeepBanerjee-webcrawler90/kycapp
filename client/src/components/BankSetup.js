@@ -96,7 +96,7 @@ class BankSetup extends Component {
 
     getBankData() {
 
-        let data = {user_id:this.state.user_id};
+        let data = {user_id:Config().USER_ID};
 
         Bank.getBankDetails(data).then(res => {
 

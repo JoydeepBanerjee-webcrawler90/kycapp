@@ -56,11 +56,16 @@ export default class SignUp extends Component {
       }
 
     SignUp() {
+    
+        var roles = ["customer"]
+        if(this.state.roles.length>0) {
+          roles = [this.state.roles]
+        }
         var data = {
           username: this.state.username,
           password: this.state.password,
           email: this.state.email,
-          roles:this.state.roles
+          roles:roles
         };
     
         Auth.signUp(data)
