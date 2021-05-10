@@ -7,7 +7,8 @@ export default class Header extends Component {
   constructor() {
     super();
     this.state = {
-      navigate_login_page:false
+      navigate_login_page:false,
+      modeValue:'Sandbox'
     }
   }
   logout = (e) => {
@@ -16,6 +17,32 @@ export default class Header extends Component {
     this.setState({navigate_login_page:true});
      
   }
+
+  changeMode(e) {
+    var target = e.target;
+    console.log(target)
+    console.log(target.value)
+    switch(target.checked) {
+      case true:
+        localStorage.setItem('mode','PROD');
+        this.setState({
+          modeValue: "Production"
+        }) 
+        break;
+      case false:
+          localStorage.setItem('mode','DEV');
+          this.setState({
+            modeValue: "Sandbox"
+          }) 
+          break;
+      default:
+        localStorage.setItem('mode','PROD');
+        this.setState({
+          modeValue: "Sandbox"
+        }) 
+    }
+  }
+
     render(){
       if(this.state.navigate_login_page) {
         return  <Route render={(props) => { 
@@ -44,6 +71,13 @@ export default class Header extends Component {
         {/* <a className="nav-link" data-widget="navbar-search" href="#" role="button">
           <i className="fas fa-search"></i>
         </a> */}
+        <div class="form-group">
+          <label class="switch-primary">
+            <input type="checkbox" class="switch switch-bootstrap status" name="status" onChange={(e) => this.changeMode(e)} value="0"/>
+            <span class="switch-body"></span>
+            <span class="switch-text">{this.state.modeValue}</span>
+          </label>
+        </div>
         {/* <div className="navbar-search-block">
           <form className="form-inline">
             <div className="input-group input-group-sm">
@@ -120,6 +154,7 @@ export default class Header extends Component {
         </div>
       </li> */}
       {/* Notifications Dropdown Menu */}
+
       <li className="nav-item dropdown">
         <Link className="nav-link" data-toggle="dropdown" to="#">
           <i className="far fa-bell"></i>

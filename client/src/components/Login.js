@@ -65,6 +65,7 @@ export default class Login extends Component {
               localStorage.setItem('access_token',accessToken);
               localStorage.setItem('userinfo',JSON.stringify(response.data));
               localStorage.setItem('user_id',response.data.id);
+              localStorage.setItem('mode','PROD');
               // toast.info('Please wait...',{
               //   autoClose:3000
               // })

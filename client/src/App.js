@@ -23,9 +23,13 @@ class App extends Component {
     this.state = {
       isLoggedIn:true
     }
+  
   }
 
   componentDidMount() {
+    console.log('intoit');
+    Config();
+    
     // console.log(Config());
     if(authToken) {
       console.log('authenticated')
@@ -34,6 +38,7 @@ class App extends Component {
         console.log('not authenticated')
       this.setState({isLoggedIn:false})
     }
+    
     // console.log(Config());
   }
   

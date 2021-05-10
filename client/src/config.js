@@ -1,6 +1,6 @@
 function Config() {
 
-    const mode = "PROD";
+    const mode = localStorage.getItem('mode');
     var API_BASEURL = "";
     var BASEURL = "";
 
@@ -17,7 +17,7 @@ function Config() {
             break;
 
         default:
-            BASEURL="https://shyamkycdemo.herokuapp.com/";
+            BASEURL="http://localhost:8080/";
             API_BASEURL=BASEURL+"api";
 
     }
