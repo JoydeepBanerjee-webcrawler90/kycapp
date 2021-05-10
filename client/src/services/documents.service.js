@@ -5,6 +5,9 @@ class KycDocuments {
     getAadhaar(data) {
         console.log(data.user_id)
         return http.get('/aadhaar/get/',{
+            headers:{
+                'x-access-token' : data.access_token
+            },
             params:{
                 user_id:data.user_id
             }

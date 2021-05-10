@@ -43,8 +43,9 @@ class KycForm extends Component {
         data.append('document_name','Addhaar File');
         data.append('document_type','AdhaarCard');
         data.append('user_id',Config().USER_ID);
+   
 
-        Uploader.aadhaar_upload(data).then(res => {
+        Uploader.aadhaar_upload(data,Config().TOKEN).then(res => {
 
             toast.success(res.data.message);
             setTimeout(()=> { this.getAadhaarData(); } , 2500);
@@ -52,18 +53,21 @@ class KycForm extends Component {
 
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         
  
-        this.getAadhaarData();
+        await this.getAadhaarData();
        
         
     }
 
     getAadhaarData() {
-        console.log(Config())
-        let data = {user_id:Config().USER_ID};
-        
+            
+        let data = {
+            user_id:Config().USER_ID,
+            access_token:Config().TOKEN
+        };
+    
         KycDocuments.getAadhaar(data).then(res => {
 
             if(res.data !== undefined) {

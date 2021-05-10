@@ -8,6 +8,5 @@ export default axios.create({
   baseURL: URL,
   headers: {
     "Content-type": "multipart/form-data",
-    "x-access-token":TOKEN
   }
 });

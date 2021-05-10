@@ -23,9 +23,9 @@ class BankSetup extends Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         
-        this.getBankData()
+        await this.getBankData()
     }
 
     onSubmitVerifyBank(e) {
@@ -56,8 +56,11 @@ class BankSetup extends Component {
         data.append('ifsc_code',ifsc_code);
         data.append('bank_name',bank_name);
         data.append('user_id',this.state.user_id);
+        data.append('access_token',Config().TOKEN);
 
-        Bank.verifyBank(data).then(res => {
+        console.log(data)
+
+        Bank.verifyBank(data,Config().TOKEN).then(res => {
 
             const resp = res.data
             btn.disabled = false;
@@ -96,7 +99,10 @@ class BankSetup extends Component {
 
     getBankData() {
 
-        let data = {user_id:Config().USER_ID};
+        let data = {
+            user_id:Config().USER_ID,
+            access_token:Config().TOKEN
+        };
 
         Bank.getBankDetails(data).then(res => {
 
@@ -189,7 +195,7 @@ class BankSetup extends Component {
                       <div className="col-lg-12 shadow-sm bg-secondary">
                           <h6 className="text-bold pt-2 pl-1"><i className="fas fa-check-circle"></i> Bank Information</h6>
                       </div>
-                      {(dataset.data.length > 0) ? 
+                      {(dataset.data) ? 
                       <div className="col-lg-12">
                     
                       {(dataset.data.map((data, i) => {

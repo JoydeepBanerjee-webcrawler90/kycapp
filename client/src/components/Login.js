@@ -32,11 +32,7 @@ export default class Login extends Component {
     }
 
     componentDidMount() {
-      console.log(window.location.href);
-      localStorage.setItem('mode','DEV')
-      if(window.location.href === "http://localhost:3000/") {
-        localStorage.setItem('mode','DEV')
-      } 
+     
     }
 
     onChangeEmail(e) {
@@ -98,7 +94,7 @@ export default class Login extends Component {
             }
 
           }).catch(e => {
-              btn.disable = false
+              btn.disabled = false
               btn.innerHTML = `Login`
               toast.error('Something went wrong, please try again later');
               console.log(e);

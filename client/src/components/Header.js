@@ -71,11 +71,11 @@ export default class Header extends Component {
         {/* <a className="nav-link" data-widget="navbar-search" href="#" role="button">
           <i className="fas fa-search"></i>
         </a> */}
-        <div class="form-group d-none">
-          <label class="switch-primary">
-            <input type="checkbox" class="switch switch-bootstrap status" name="status" onChange={(e) => this.changeMode(e)} value="0"/>
-            <span class="switch-body"></span>
-            <span class="switch-text">{this.state.modeValue}</span>
+        <div className="form-group d-none">
+          <label className="switch-primary">
+            <input type="checkbox" className="switch switch-bootstrap status" name="status" onChange={(e) => this.changeMode(e)} value="0"/>
+            <span className="switch-body"></span>
+            <span className="switch-text">{this.state.modeValue}</span>
           </label>
         </div>
         {/* <div className="navbar-search-block">

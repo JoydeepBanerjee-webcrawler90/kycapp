@@ -1,6 +1,12 @@
 function Config() {
 
-    const mode = (localStorage.getItem('mode')) ? localStorage.getItem('mode') : 'DEV';
+
+    var mode = 'PROD'
+    console.log(window.location.href);
+
+    if(window.location.href.indexOf('local') > -1) {
+      mode = 'DEV';
+    } 
     var API_BASEURL = "";
     var BASEURL = "";
 
